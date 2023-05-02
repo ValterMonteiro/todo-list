@@ -1,5 +1,6 @@
 import { Container, CssBaseline } from '@mui/material'
-import { Theme } from './Theme'
+import { Theme } from './theme'
+import { Home } from './pages/home'
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
       <Theme>
         <CssBaseline />
         <Container>
-          <h1>TODO LIST</h1>
+          <Home />
         </Container>
       </Theme>
     </>
