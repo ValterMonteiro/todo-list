@@ -1,4 +1,5 @@
-import { ChangeEvent, useState } from 'react';
+import { Container, CssBaseline } from '@mui/material'
+import { Theme } from './Theme'
 
 
 function App() {
@@ -6,7 +7,12 @@ function App() {
 
   return (
     <>
-      <h1>TODO LIST</h1>
+      <Theme>
+        <CssBaseline />
+        <Container>
+          <h1>TODO LIST</h1>
+        </Container>
+      </Theme>
     </>
   )
 }
