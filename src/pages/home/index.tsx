@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, TextField, List, ListItem, ListItemText } from '@mui/material';
+import { Button, TextField, List, ListItem, ListItemText, Grid, Container, useTheme } from '@mui/material';
 import { BaseLayout } from '../../Layout/BaseLayout';
 
 export function Home() {
@@ -15,9 +15,12 @@ export function Home() {
     setNovaTarefa('');// limpa o campo de texto após criar a tarefa
   };
 
+  const theme = useTheme();
+
   return (
     <>
-      <BaseLayout appBarTitle='TODO LIST'>
+      <BaseLayout appBarTitle='todo'>
+
         <TextField
           id="nova-tarefa"
           label="Adicione uma nova tarefa"
@@ -33,6 +36,18 @@ export function Home() {
             </ListItem>
           ))}
         </List>
+        <main>
+          <Container>
+            <Grid container spacing={theme.spacing(0.5)}>
+              <Grid item xl={6}>
+                <TextField name='Task' fullWidth />
+              </Grid>
+              <Grid item xl={6} sm={12}>
+                <Button variant='contained' fullWidth>Adicionar</Button>
+              </Grid>
+            </Grid>
+          </Container>
+        </main>
       </BaseLayout>
     </>
   );

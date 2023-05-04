@@ -1,4 +1,4 @@
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Container, Grid, TextField, Toolbar, Typography, useTheme } from '@mui/material';
 
 
 type BaseLayoutProps = {
@@ -6,16 +6,31 @@ type BaseLayoutProps = {
   appBarTitle: string
 }
 export function BaseLayout({ children, appBarTitle }: BaseLayoutProps) {
+
+  const theme = useTheme();
+
   return (
     <>
-      <AppBar>
-        <Toolbar>
+      <AppBar position='static'>
+        <Toolbar
+          sx={{
+            paddingTop: theme.spacing(2),
+            paddingBottom: theme.spacing(2),
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            '@media all': {
+              minHeight: 200
+            },
+          }}
+        >
           <Typography
-            variant='h5'>
+            variant='h5'
+            component='h1'>
             {appBarTitle}
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar >
       <Box
         display='flex'
         flexDirection='row'
@@ -30,6 +45,18 @@ export function BaseLayout({ children, appBarTitle }: BaseLayoutProps) {
       >
         {children}
       </Box>
+      {/* <main>
+        <Container>
+          <Grid container spacing={theme.spacing(0.5)}>
+            <Grid item xl={6}>
+              <TextField name='Task' fullWidth />
+            </Grid>
+            <Grid item xl={6} sm={12}>
+              <Button vatiant='contained' fullWidth>Adicionar</Button>
+            </Grid>
+          </Grid>
+        </Container>
+      </main> */}
     </>
   )
 }
