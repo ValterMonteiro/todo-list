@@ -54,6 +54,8 @@ export function Home() {
           <Grid container spacing={theme.spacing(1)}
             sx={{
               marginTop: theme.spacing(2),
+              display: 'flex',
+              justifyContent: 'space-between',
             }}
           >
             <Grid item>
@@ -64,14 +66,24 @@ export function Home() {
                 Tarefas criadas <Badge color='primary' badgeContent={0} showZero />
               </Typography>
             </Grid>
+            <Grid item>
+              <Typography
+                variant='caption'
+                component='h2'
+              >
+                Concluídas <Badge color='primary' badgeContent={0} showZero />
+              </Typography>
+            </Grid>
           </Grid>
-          <List>
-            {tarefas.map((tarefa, index) => (
-              <ListItem key={index}>
-                <ListItemText primary={tarefa} />
-              </ListItem>
-            ))}
-          </List>
+          <Grid container spacing={theme.spacing(1)}>
+            <List>
+              {tarefas.map((tarefa, index) => (
+                <ListItem key={index}>
+                  <ListItemText primary={tarefa} />
+                </ListItem>
+              ))}
+            </List>
+          </Grid>
         </main>
       </BaseLayout >
     </>
