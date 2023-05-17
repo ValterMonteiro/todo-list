@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Button, TextField, List, ListItem, ListItemText, Grid, Container, useTheme, colors, Typography, Badge, AppBar, Toolbar } from '@mui/material';
+import { Button, TextField, Grid, Container, useTheme, colors, Typography, Badge, AppBar, Toolbar, Card, CardContent, ListItemText } from '@mui/material';
 import { ClipboardText, PlusCircle, Rocket } from '@phosphor-icons/react';
+import { CheckBoxOutlineBlank, RestoreFromTrash } from '@mui/icons-material';
 
 export function Home() {
   const [novaTarefa, setNovaTarefa] = useState('');
@@ -123,16 +124,49 @@ export function Home() {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              flexDirection: 'column',
             }}>
-            <ClipboardText size={32} />
-            Você ainda não possui tarefas cadastradas
-            <List>
+            <Card
+              sx={{
+                width: '100%',
+              }}
+            >
+              <CardContent
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                }}>
+                <ClipboardText size={32} />
+                <Typography>
+                  Você ainda não possui tarefas cadastradas
+                </Typography>
+                <Typography>
+                  Crie tarefas e organize seus itens a fazer
+                </Typography>
+              </CardContent>
+            </Card>
+            <Card
+              sx={{
+                width: '100%',
+                marginTop: theme.spacing(2),
+              }}>
               {tarefas.map((tarefa, index) => (
-                <ListItem key={index}>
+                <CardContent key={index}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    paddingTop: theme.spacing(6),
+                  }}>
+                  <CheckBoxOutlineBlank />
                   <ListItemText primary={tarefa} />
-                </ListItem>
+                  <RestoreFromTrash />
+                </CardContent>
               ))}
-            </List>
+            </Card>
           </Grid>
         </Grid>
       </Container>
