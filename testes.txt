@@ -1,0 +1,10 @@
+código que estava antes de criar o card
+<List>
+      {tarefas.map((tarefa, index) => (
+          <ListItem key={index}>
+              <CheckBoxOutlineBlank />
+                  <ListItemText primary={tarefa} />
+                  <RestoreFromTrash />
+          </ListItem>
+      ))}
+</List>
