@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { Button, TextField, Grid, Container, useTheme, colors, Typography, Badge, AppBar, Toolbar, Card, CardContent, ListItemText } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { Button, TextField, Grid, Container, useTheme, colors, Typography, Badge, AppBar, Toolbar, Card, CardContent, ListItemText, List, ListItem } from '@mui/material';
 import { ClipboardText, PlusCircle, Rocket } from '@phosphor-icons/react';
 import { CheckBoxOutlineBlank, RestoreFromTrash } from '@mui/icons-material';
+import { getAll } from '../../service/api';
 
 export function Home() {
   const [novaTarefa, setNovaTarefa] = useState('');
@@ -17,6 +18,13 @@ export function Home() {
   };
 
   const theme = useTheme();
+
+  useEffect(() => {
+    async function listTasks() {
+      setTarefas(await getAll());
+    }
+    listTasks();
+  }, [])
 
   return (
     <>
@@ -60,7 +68,7 @@ export function Home() {
               top: '-26px',
             }}
           >
-            <Grid item xl={10} sm={12}>
+            <Grid item xl={12} sm={10}>
               <TextField
                 name='Task'
                 id="nova-tarefa"
@@ -74,7 +82,7 @@ export function Home() {
                 }}
               />
             </Grid>
-            <Grid item xl={2} sm={12}>
+            <Grid item xl={12} sm={2}>
               <Button
                 variant='contained'
                 onClick={handleCreate}
@@ -152,7 +160,7 @@ export function Home() {
                 width: '100%',
                 marginTop: theme.spacing(2),
               }}>
-              {tarefas.map((tarefa, index) => (
+              {tarefas.map((listTasks, index) => (
                 <CardContent key={index}
                   sx={{
                     display: 'flex',
@@ -162,11 +170,23 @@ export function Home() {
                     paddingTop: theme.spacing(6),
                   }}>
                   <CheckBoxOutlineBlank />
-                  <ListItemText primary={tarefa} />
+                  <ListItemText />
+                  {listTasks.description}
                   <RestoreFromTrash />
                 </CardContent>
               ))}
             </Card>
+            {/* <List>
+              {tarefas.map((listTasks, index) => (
+                <ListItem key={index}>
+                  <CheckBoxOutlineBlank />
+                  <ListItemText />
+
+
+                  <RestoreFromTrash />
+                </ListItem>
+              ))}
+            </List> */}
           </Grid>
         </Grid>
       </Container>
