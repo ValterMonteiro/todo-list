@@ -8,3 +8,6 @@ código que estava antes de criar o card
           </ListItem>
       ))}
 </List>
+
+Verificar exemplo da aula 
+https://github.com/ValterMonteiro/app-example-react/blob/master/src/pages/Contacts/index.tsx
