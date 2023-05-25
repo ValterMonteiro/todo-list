@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Button, TextField, Grid, Container, useTheme, colors, Typography, Badge, AppBar, Toolbar, Card, CardContent, ListItemText, List, ListItem } from '@mui/material';
+import { FormEvent, useEffect, useState } from 'react';
+import { Button, TextField, Grid, Container, useTheme, colors, Typography, Badge, AppBar, Toolbar, Card, CardContent, ListItemText } from '@mui/material';
 import { ClipboardText, PlusCircle, Rocket } from '@phosphor-icons/react';
 import { CheckBoxOutlineBlank, RestoreFromTrash } from '@mui/icons-material';
 import { getAll } from '../../service/api';
@@ -20,11 +20,19 @@ export function Home() {
   const theme = useTheme();
 
   useEffect(() => {
-    async function listTasks() {
+    const listTasks = async () => {
       setTarefas(await getAll());
     }
     listTasks();
   }, [])
+
+  //fazer um handleSubmit para adicionar novas task
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const inputTask: string = event.currentTarget.value;
+    const description: string = inputTask.value;
+
+  };
 
   return (
     <>
@@ -176,17 +184,6 @@ export function Home() {
                 </CardContent>
               ))}
             </Card>
-            {/* <List>
-              {tarefas.map((listTasks, index) => (
-                <ListItem key={index}>
-                  <CheckBoxOutlineBlank />
-                  <ListItemText />
-
-
-                  <RestoreFromTrash />
-                </ListItem>
-              ))}
-            </List> */}
           </Grid>
         </Grid>
       </Container>
