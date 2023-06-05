@@ -1,53 +1,44 @@
-import { Grid, Box, Typography, Chip, useTheme, Stack, Container, Badge } from "@mui/material";
+import { Grid, Box, Typography, Chip, useTheme, Stack } from "@mui/material";
 
 import { Task } from "../../types";
 import { TaskCard } from "../TaskCard";
 type TaskListProps = {
   tasks: Task[],
 }
-export function TaskList() {
+export function TaskList({ tasks }: TaskListProps) {
   const theme = useTheme();
   return (
-    <Container
-      sx={{
-        paddingTop: theme.spacing(10),
-      }}>
-      <Grid container spacing={theme.spacing(1)}
+    <>
+      <Grid container
+        columnSpacing={theme.spacing(1)}
+        rowSpacing={theme.spacing(4)}
+        mt={1}
         sx={{
-          marginTop: theme.spacing(2),
+          marginTop: theme.spacing(13),
           display: 'flex',
           justifyContent: 'space-between',
         }}
       >
-        <Grid item>
-          <Typography
-            variant='caption'
-            component='h2'
-          >
-            Tarefas criadas <Badge color='primary' badgeContent={0} showZero />
-          </Typography>
+        <Grid item xl={12} display='flex' justifyContent='space-between'>
+          <Box display='flex' alignItems='center' gap={theme.spacing(1)}>
+            <Typography>Tarefas criadas</Typography>
+            <Chip size='small' label={5} />
+          </Box>
         </Grid>
-        <Grid item>
-          <Typography
-            variant='caption'
-            component='h2'
-          >
-            Concluídas <Badge color='primary' badgeContent={0} showZero />
-          </Typography>
+        <Grid item xl={12} display='flex' justifyContent='space-between'>
+          <Box display='flex' alignItems='center' gap={theme.spacing(1)}>
+            <Typography>Concluídas </Typography>
+            <Chip size='small' label={'2 de 5'} />
+          </Box>
         </Grid>
+      </Grid >
+      <Grid item xl={12}>
+        <Stack gap={theme.spacing(1)}>
+          {tasks?.map((task: Task) => (
+            <TaskCard key={task.id} task={task} />
+          ))}
+        </Stack>
       </Grid>
-      <Grid container spacing={theme.spacing(1)}>
-        <Grid item
-          xl={12} xs={12}
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-          }}>
-
-        </Grid>
-      </Grid>
-    </Container>
+    </>
   )
 }
