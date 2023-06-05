@@ -1,21 +1,16 @@
-import { CheckBoxOutlineBlank, RestoreFromTrash } from '@mui/icons-material';
-import { Card, CardContent, ListItemText, Typography } from '@mui/material';
-import { ClipboardText } from '@phosphor-icons/react';
+import { Box, Card, CardContent, Checkbox, IconButton, Typography } from '@mui/material';
+import { Task } from "../../types";
+import { AlertDialog } from "../AlertDialog";
+import { Trash } from '@phosphor-icons/react';
 
-export function TaskCard() {
+type TaskCardProps = {
+  task: Task;
+};
+export function TaskCard({ task }: TaskCardProps) {
   return (
-    <Card
-              sx={{
-                width: '100%',
-              }}
-            >
-              <CardContent
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                }}>
+    <>
+      {/* <Card>
+              <CardContent>
                 <ClipboardText size={32} />
                 <Typography>
                   Você ainda não possui tarefas cadastradas
@@ -41,10 +36,26 @@ export function TaskCard() {
                   }}>
                   <CheckBoxOutlineBlank />
                   <ListItemText />
-                  {listTasks.description}
+                  {task.description}
                   <RestoreFromTrash />
                 </CardContent>
               ))}
-            </Card>
-  )
+    </Card> */}
+
+      < Card >
+        <CardContent>
+          <Box display='flex' alignItems='center' justifyContent='space-between'>
+            <Box display='flex' alignItems='center'>
+              <Checkbox />
+              <Typography>{task.description}</Typography>
+            </Box>
+            <IconButton color='error'>
+              <Trash />
+            </IconButton>
+          </Box>
+        </CardContent>
+      </Card >
+    </>
+
+  );
 }
